@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { mount -o remount,ro / }
+foreground { fsck -ATat noopts=_netdev }
+foreground { mount -o remount,rw / }
