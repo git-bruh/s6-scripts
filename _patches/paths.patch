@@ -8,9 +8,10 @@ index e929502..713d106 100644
  use_user_paths() {
 -    RCPATH="${USERPATH}/s6/rc"
 -    SVPATH="${USERPATH}/s6/sv"
+-    RUNPATH="${RUNPATH}-$(id -u)"
 +    RCPATH="${USERPATH}/s6-rc/rc"
 +    SVPATH="${USERPATH}/s6-rc/sv"
-     RUNPATH="${RUNPATH}-$(id -u)"
++    RUNPATH="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/s6-rc"
      SVDIRS="${RUNPATH}/servicedirs"
      DBPATH="${RCPATH}/compiled"
 @@ -43,7 +43,7 @@ use_user_paths() {
