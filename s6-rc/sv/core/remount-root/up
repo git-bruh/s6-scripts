@@ -1,4 +1,2 @@
 #!/bin/execlineb -P
-if { mount -o remount,ro / }
-if { fsck -ATat noopts=_netdev }
-if { mount -o remount,rw / }
+mount -o remount,rw /
