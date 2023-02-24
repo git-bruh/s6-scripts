@@ -1,21 +1,20 @@
 #!/bin/execlineb -P
-foreground {
-    ifelse { mountpoint -q /dev }
-        { mount -t devtmpfs dev /dev -o remount,mode=0755,nosuid }
+if {
+    if -t -n { mountpoint -q /dev }
     mount -t devtmpfs dev /dev -o mode=0755,nosuid
 }
-foreground { ln -snf /proc/self/fd /dev/fd }
-foreground { ln -snf /proc/self/fd/0 /dev/stdin }
-foreground { ln -snf /proc/self/fd/1 /dev/stdout }
-foreground { ln -snf /proc/self/fd/2 /dev/stderr }
-foreground { ln -snf /proc/kcore /dev/core }
-foreground { mkdir -p /dev/pts }
-foreground { mkdir -p /dev/shm }
-foreground { 
-    if -n { mountpoint -q /dev/pts }
+if { ln -snf /proc/self/fd /dev/fd }
+if { ln -snf /proc/self/fd/0 /dev/stdin }
+if { ln -snf /proc/self/fd/1 /dev/stdout }
+if { ln -snf /proc/self/fd/2 /dev/stderr }
+if { ln -snf /proc/kcore /dev/core }
+if { mkdir -p /dev/pts }
+if { mkdir -p /dev/shm }
+if {
+    if -t -n { mountpoint -q /dev/pts }
     mount -t devpts devpts /dev/pts -o mode=0620,gid=5,nosuid,noexec
 }
-foreground { 
-    if -n { mountpoint -q /dev/shm }
+if {
+    if -t -n { mountpoint -q /dev/shm }
     mount -t tmpfs shm /dev/shm -o mode=1777,nosuid,nodev
 }

@@ -1,2 +1,2 @@
 #!/bin/execlineb -P
-foreground { mount -a -O no_netdev }
+exec mount -a -O no_netdev

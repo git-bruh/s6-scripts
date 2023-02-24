@@ -1,8 +1,8 @@
 #!/bin/execlineb -P
-foreground { redirfd -w 1 /dev/null ssh-keygen -A }
-foreground { touch /var/log/lastlog }
-foreground { chgrp utmp /var/log/lastlog }
-foreground { chmod 664 /var/log/lastlog }
+if { redirfd -w 1 /dev/null ssh-keygen -A }
+if { touch /var/log/lastlog }
+if { chgrp utmp /var/log/lastlog }
+if { chmod 664 /var/log/lastlog }
 envfile /etc/s6-rc/config/sshd.conf
 importas -sCuD "" OPTS OPTS
 fdmove -c 2 1
