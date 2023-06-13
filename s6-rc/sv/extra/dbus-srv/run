@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+if { install -m755 -g 22 -o 22 -d /run/dbus }
+fdmove -c 2 1
+exec dbus-daemon --system --nofork --nopidfile
